@@ -1,80 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Text Extractor & Regex Matcher</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resignation</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        input, button { margin: 10px; padding: 8px; }
-        #result { margin-top: 20px; white-space: pre-wrap; text-align: left; }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+      }
+      div {
+        font-size: 48px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+      }
     </style>
-</head>
-<body>
-
-    <h2>Upload PDF & Search Letters Contains</h2>
-    
-    <input type="file" id="pdfUpload" accept="application/pdf">
-    <input type="text" id="regexPattern" placeholder="Enter regex pattern">
-    <button onclick="processPDF()">Extract & Search</button>
-    
-    <h3>Results:</h3>
-    <div id="result"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script src="script.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    window.processPDF = async function () {
-        const fileInput = document.getElementById("pdfUpload");
-        const regexPattern = document.getElementById("regexPattern").value.trim();
-        const resultDiv = document.getElementById("result");
-
-        if (!fileInput.files.length) {
-            resultDiv.innerHTML = "<b style='color:red;'>Please upload a PDF file.</b>";
-            return;
-        }
-
-        if (!regexPattern) {
-            resultDiv.innerHTML = "<b style='color:red;'>Please enter a regex pattern.</b>";
-            return;
-        }
-
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-
-        reader.onload = async function (event) {
-            const typedArray = new Uint8Array(event.target.result);
-            const pdf = await pdfjsLib.getDocument(typedArray).promise;
-
-            let extractedText = "";
-            for (let i = 1; i <= pdf.numPages; i++) {
-                const page = await pdf.getPage(i);
-                const textContent = await page.getTextContent();
-                extractedText += textContent.items.map(item => item.str).join(" ") + "\n";
-            }
-
-            const matches = extractMatches(extractedText, regexPattern);
-            resultDiv.innerHTML = matches.length > 0 
-                ? `<b>Matches found:</b><br>${matches.join("<br>")}` 
-                : "<b>No matches found.</b>";
-        };
-
-        reader.readAsArrayBuffer(file);
-    };
-
-    function extractMatches(text, pattern) {
-        try {
-            const regex = new RegExp("\\b" + pattern + "\\S*\\b", "gi");
-            return text.match(regex) || [];
-        } catch (error) {
-            document.getElementById("result").innerHTML = "<b style='color:red;'>Invalid regex pattern.</b>";
-            return [];
-        }
-    }
-});
-
-    </script>
-</body>
+  </head>
+  <body>
+    <div>BOUNCE NA DIN AKO BOSS BYE!!!</div>
+  </body>
 </html>
